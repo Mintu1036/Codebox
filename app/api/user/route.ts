@@ -4,6 +4,12 @@ import { currentUser } from "@clerk/nextjs/server";
 import { eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 
+/**
+ * Create or fetch the authenticated user's database record.
+ *
+ * @param req - The incoming POST request
+ * @returns The user's database record as JSON; if no record existed, a new record is created with name, email, and points and returned
+ */
 export async function POST(req: NextRequest) {
 
     const user = await currentUser();
