@@ -4,16 +4,7 @@ import { ThemeProvider as NextThemesProvider } from "next-themes"
 import { useUser } from '@clerk/nextjs'
 import axios from 'axios'
 import { UserDetailContext } from '@/context/UserDetailContext';
-/**
- * Provides theme management and a user-detail context to its children.
- *
- * When an authenticated user becomes available, triggers a request to create or fetch
- * the user's record and stores the result in the provided context value.
- *
- * @param children - React nodes that will receive the theme and user-detail context
- * @param props - Props forwarded to NextThemesProvider
- * @returns A React element that wraps `children` with NextThemesProvider and UserDetailContext.Provider
- */
+import Header from './_components/Header';
 function Provider({
     children,
     ...props
@@ -35,6 +26,10 @@ function Provider({
         <NextThemesProvider
             {...props}>
             <UserDetailContext.Provider value={{ userDetail, setUserDetail }}>
+                {/* Header / Navbar */}
+                <div className='flex flex-col items-center'>
+                    <Header />
+                </div>
                 {children}
             </UserDetailContext.Provider>
         </NextThemesProvider>
